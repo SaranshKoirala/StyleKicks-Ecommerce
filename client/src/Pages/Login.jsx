@@ -1,13 +1,35 @@
 import { MdOutlineMail } from "react-icons/md";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useStore } from "zustand";
 
 function Login() {
+  const { getUserByEmail } = useStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [data, setData] = useState(null);
+
+  useEffect(
+    function () {
+      async function fetchData() {
+        const { success, message, user } = await getUserByEmail(email);
+        if (success) {
+          setData(user);
+          console.log(message);
+        }
+      }
+      if (email) {
+        fetchData();
+      }
+    },
+    [getUserByEmail, email]
+  );
 
   function handleLoginBtn() {
+    if (data.email === email && data.password === password) {
+      console.log("Welcome to the home page!");
+    }
     setEmail("");
     setPassword("");
   }
