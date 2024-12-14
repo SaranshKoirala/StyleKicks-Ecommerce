@@ -28,7 +28,7 @@ app.use((req, res) => {
 //connect to database
 connectDB();
 
-const port = process.env.PORT || 5000;
+const port = 5000 || process.env.PORT;
 
 app.listen(port, () => {
   console.log(`Server started at port:${port}`);

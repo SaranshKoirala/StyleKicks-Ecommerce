@@ -2,12 +2,15 @@ import { MdOutlineMail } from "react-icons/md";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Notyf } from "notyf";
+import "notyf/notyf.min.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState();
   const navigate = useNavigate();
+  const notyf = new Notyf();
 
   // useEffect(() => {
   //   if (userData) {
@@ -17,7 +20,7 @@ function Login() {
 
   async function handleLoginBtn() {
     try {
-      const res = await fetch("http://localhost:8000/api/users/login", {
+      const res = await fetch("http://localhost:5000/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,8 +39,9 @@ function Login() {
 
       //redirecting the path
       navigate("/");
+      notyf.success("Login Sucessful.");
     } catch (error) {
-      console.log(error.message);
+      notyf.error(error.message);
     }
   }
 
