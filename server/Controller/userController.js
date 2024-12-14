@@ -12,10 +12,10 @@ export const getUsers = async (req, res) => {
 
 export const getUser = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { id } = req.params;
 
     // Find the user by ID
-    const user = await User.findOne(email);
+    const user = await User.findById(id);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -33,7 +33,7 @@ export const createUser = async (req, res) => {
     const { name, email, password } = req.body;
 
     // Validate the request body
-    if (!name || !email || !password) {
+    if (!email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -62,6 +62,25 @@ export const deleteUser = async (req, res) => {
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    //comparing the user given password to stored password
+    if (user.password !== password) {
+      return res.status(401).json({ message: "Invalid  password" });
+    }
+
+    //login successful
+    res.status(200).json({ message: "login sucessful", user });
+  } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 };

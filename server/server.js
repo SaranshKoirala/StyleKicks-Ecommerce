@@ -2,10 +2,12 @@ import express from "express";
 import dotenv from "dotenv";
 import userRoutes from "./Routes/userRoute.js";
 import connectDB from "./db/dbserver.js";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
 app.use(express.json()); //parser
+app.use(cors());
 
 //all routes in userRoutes will be prefixed with /api
 app.use("/api", userRoutes);

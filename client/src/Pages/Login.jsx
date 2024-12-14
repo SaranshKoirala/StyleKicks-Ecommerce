@@ -1,37 +1,43 @@
 import { MdOutlineMail } from "react-icons/md";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useStore } from "zustand";
+import { useState, useEffect } from "react";
+// import { useStore } from "zustand";
 
 function Login() {
-  const { getUserByEmail } = useStore();
+  // const { getUserByEmail } = userStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [data, setData] = useState(null);
+  const [userData, setUserData] = useState();
 
-  useEffect(
-    function () {
-      async function fetchData() {
-        const { success, message, user } = await getUserByEmail(email);
-        if (success) {
-          setData(user);
-          console.log(message);
-        }
-      }
-      if (email) {
-        fetchData();
-      }
-    },
-    [getUserByEmail, email]
-  );
-
-  function handleLoginBtn() {
-    if (data.email === email && data.password === password) {
-      console.log("Welcome to the home page!");
+  useEffect(() => {
+    if (userData) {
+      console.log("userData:", userData); // Log userData after it has been updated
     }
-    setEmail("");
-    setPassword("");
+  }, [userData]);
+
+  async function handleLoginBtn() {
+    try {
+      const user = await fetch("http://localhost:8000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      if (!user) {
+        console.log("No user found with the given credentials!");
+      }
+      const data = await user.json();
+      setUserData(data);
+      console.log("userData:", userData);
+      setEmail("");
+      setPassword("");
+
+      return { message: "Login Sucessful." };
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
@@ -72,9 +78,14 @@ function Login() {
             </p>
           </Link>
         </div>
-        <button className="bg-blue-500 text-white p-2" onClick={handleLoginBtn}>
-          Login{" "}
-        </button>
+        <Link className="w-full">
+          <button
+            className="bg-blue-500 text-white p-2"
+            onClick={handleLoginBtn}
+          >
+            Login{" "}
+          </button>
+        </Link>
         <p className="text-center text-sm">
           Not a member?
           <Link to="/signup" className="text-blue-500">
