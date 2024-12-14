@@ -33,8 +33,21 @@ export const createUser = async (req, res) => {
     const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     // Validate the request body
-    if (!firstName || !lastName || !email || !password || confirmPassword) {
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
       return res.status(400).json({ message: "All fields are required" });
+    }
+
+    //check if for the existing user
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res
+        .status(409)
+        .json({ success: false, message: "Email already in use" });
+    }
+
+    //check if password match
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: "Passwords do not match" });
     }
 
     // Create a new user
@@ -47,7 +60,7 @@ export const createUser = async (req, res) => {
     });
     await newUser.save();
 
-    res.status(201).json(newUser);
+    res.status(201).json({ message: "User created successfully", newUser });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

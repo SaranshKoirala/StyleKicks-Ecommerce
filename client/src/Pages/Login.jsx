@@ -17,17 +17,17 @@ function Login() {
 
   async function handleLoginBtn() {
     try {
-      const user = await fetch("http://localhost:8000/api/users/login", {
+      const res = await fetch("http://localhost:8000/api/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
-      if (!user) {
+      if (!res) {
         console.log("No user found with the given credentials!");
       }
-      const data = await user.json();
+      const data = await res.json();
 
       //setting local states
       setUserData(data);

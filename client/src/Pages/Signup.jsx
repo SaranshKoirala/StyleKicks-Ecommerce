@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Notyf } from "notyf";
+// import 'notyf/notyf.min.css";
 
 function Signup() {
   const [firstName, setFirstName] = useState("");
@@ -7,8 +9,11 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const notyf = new Notyf();
+
   async function handleSignupBtn() {
-    const user = await fetch("http://localhost:8000/api/users", {
+    const res = await fetch("http://localhost:8000/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,6 +26,11 @@ function Signup() {
         confirmPassword,
       }),
     });
+    if (!res) {
+      notyf.error(res.message || "Something went wrong!");
+    }
+    const user = res.json();
+    notyf.success(user.message);
   }
 
   return (
