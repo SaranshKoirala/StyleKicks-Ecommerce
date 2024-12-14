@@ -1,20 +1,19 @@
 import { MdOutlineMail } from "react-icons/md";
 import { IoLockClosedOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-// import { useStore } from "zustand";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
-  // const { getUserByEmail } = userStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (userData) {
-      console.log("userData:", userData); // Log userData after it has been updated
-    }
-  }, [userData]);
+  // useEffect(() => {
+  //   if (userData) {
+  //     console.log("userData:", userData); // Log userData after it has been updated
+  //   }
+  // }, [userData]);
 
   async function handleLoginBtn() {
     try {
@@ -29,12 +28,14 @@ function Login() {
         console.log("No user found with the given credentials!");
       }
       const data = await user.json();
+
+      //setting local states
       setUserData(data);
-      console.log("userData:", userData);
       setEmail("");
       setPassword("");
 
-      return { message: "Login Sucessful." };
+      //redirecting the path
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }
@@ -78,20 +79,20 @@ function Login() {
             </p>
           </Link>
         </div>
-        <Link className="w-full">
-          <button
-            className="bg-blue-500 text-white p-2"
-            onClick={handleLoginBtn}
-          >
-            Login{" "}
-          </button>
-        </Link>
-        <p className="text-center text-sm">
-          Not a member?
-          <Link to="/signup" className="text-blue-500">
+
+        <button
+          className="rounded-md bg-blue-500 text-white p-2"
+          onClick={handleLoginBtn}
+        >
+          Login{" "}
+        </button>
+
+        <div className="flex gap-2 justify-center -mt-4">
+          <p className="text-center text-sm">Not a member?</p>
+          <Link to="/signup" className="text-blue-500 text-center text-sm">
             SignUp
           </Link>
-        </p>
+        </div>
       </div>
     </div>
   );

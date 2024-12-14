@@ -30,15 +30,21 @@ export const getUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     // Validate the request body
-    if (!email || !password) {
+    if (!firstName || !lastName || !email || !password || confirmPassword) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
     // Create a new user
-    const newUser = new User({ name, email, password });
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    });
     await newUser.save();
 
     res.status(201).json(newUser);
