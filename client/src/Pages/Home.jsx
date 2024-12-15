@@ -1,9 +1,9 @@
-import Navbar from "../Components/Navbar";
+import Hero from "../Components/Main";
 
 function Home() {
   return (
     <div>
-      <Navbar />
+      <Hero />
     </div>
   );
 }

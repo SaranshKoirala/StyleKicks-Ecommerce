@@ -46,8 +46,8 @@ function Login() {
   }
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-200">
-      <div className="w-96 flex flex-col justify-center bg-white p-10 gap-10 rounded-lg">
+    <div className="bg-[url(/image-4.jpg)] bg-fixed bg-cover bg-center h-screen flex items-center justify-center overflow-hidden">
+      <div className="w-96 flex flex-col justify-center bg-white p-10 gap-10 rounded-lg ">
         <h1 className="text-center font-bold text-2xl">Login</h1>
         <div className="relative ">
           <MdOutlineMail className="absolute left-3 top-1/2 transform -translate-y-1/2" />

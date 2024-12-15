@@ -12,16 +12,12 @@ function Navnar() {
   }
 
   return (
-    <div className="flex gap-10 justify-between items-center px-10 py-2">
-      <img
-        src="/image-removebg-preview (3).png"
-        className="m-0 p-0"
-        width={150}
-      />
-      <ul className="flex gap-10 justify-center items-center ">
-        <li>Home</li>
-        <li>Products</li>
-        <li>Support</li>
+    <div className="flex gap-10 justify-between items-center px-10 py-2 text-white  sticky top-0">
+      <img src="/full-logo.png" className="m-0 p-0" width={150} />
+      <ul className="flex gap-10 justify-center items-center  ">
+        <li className="cursor-pointer">Home</li>
+        <li className="cursor-pointer">Contact Us</li>
+        <li className="cursor-pointer">Products</li>
         <Link to={"/login"}>
           <li>Login</li>
         </Link>
@@ -66,10 +62,10 @@ function Navnar() {
           )} */}
         </li>
         <li>
-          <MdOutlineShoppingCart className="text-2xl" />
+          <MdOutlineShoppingCart className="text-2xl cursor-pointer" />
         </li>
         <li>
-          <CgProfile className="text-2xl" />
+          <CgProfile className="text-2xl cursor-pointer" />
         </li>
       </ul>
     </div>

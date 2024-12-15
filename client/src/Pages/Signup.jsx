@@ -47,7 +47,7 @@ function Signup() {
   }
 
   return (
-    <div className="flex justify-center items-center flex-col h-screen p-10 bg-gray-200">
+    <div className=" bg-[url(/image-6.jpeg)] bg-fixed bg-cover bg-center flex justify-center items-center flex-col h-screen  bg-gray-200  overflow-hidden">
       <div className="w-96 flex flex-col justify-center bg-white p-10 gap-8 rounded-lg">
         <h1 className="text-center  font-bold text-2xl">Sign Up</h1>
 
