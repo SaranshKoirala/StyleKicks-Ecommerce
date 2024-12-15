@@ -1,4 +1,4 @@
-import Navbar from "../Components/Navbar";
+import Navbar from "./Navbar";
 
 function Hero() {
   return (

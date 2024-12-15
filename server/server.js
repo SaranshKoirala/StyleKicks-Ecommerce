@@ -1,8 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
-import userRoutes from "./Routes/userRoute.js";
 import connectDB from "./db/dbserver.js";
 import cors from "cors";
+import userRoute from "./Routes/userRoute.js";
+import productRoute from "./Routes/productRoute.js";
 
 const app = express();
 
@@ -18,7 +19,8 @@ dotenv.config();
 app.use(express.json()); //parser
 
 //all routes in userRoutes will be prefixed with /api
-app.use("/api", userRoutes);
+app.use("/api/users", userRoute);
+app.use("/api/products", productRoute);
 
 //for non existence route
 app.use((req, res) => {
