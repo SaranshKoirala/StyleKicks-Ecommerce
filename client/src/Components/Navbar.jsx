@@ -4,7 +4,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function Navnar() {
+function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleSearchBtn() {
@@ -12,10 +12,12 @@ function Navnar() {
   }
 
   return (
-    <div className="flex gap-10 justify-between items-center px-10 py-2 text-white  ">
+    <div className="flex gap-10 justify-between items-center px-10 py-2 text-white bg-black ">
       <img src="/full-logo.png" className="m-0 p-0" width={150} />
       <ul className="flex gap-10 justify-center items-center  ">
-        <li className="cursor-pointer">Home</li>
+        <Link to="/">
+          <li className="cursor-pointer">Home</li>
+        </Link>
         <li className="cursor-pointer">Contact Us</li>
         <li className="cursor-pointer">Products</li>
         <Link to={"/login"}>
@@ -72,4 +74,4 @@ function Navnar() {
   );
 }
 
-export default Navnar;
+export default Navbar;

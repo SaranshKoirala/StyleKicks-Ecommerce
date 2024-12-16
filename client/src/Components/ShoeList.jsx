@@ -7,9 +7,9 @@ function ShoeList({ shoe }) {
   }
   return (
     <Link
-      to={"/product/:id"}
+      to={`/product/${shoe._id}`}
       key={shoe._id}
-      className="w-60 h-auto list-none flex flex-col justify-center items-center font-mono gap-5 cursor-pointer"
+      className="w-60 h-auto list-none flex flex-col justify-center items-center font-mono gap-5 cursor-pointer "
     >
       <img src={shoe.image} />
       <div className="text-center">
