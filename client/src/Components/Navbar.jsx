@@ -19,7 +19,9 @@ function Navbar() {
           <li className="cursor-pointer">Home</li>
         </Link>
         <li className="cursor-pointer">Contact Us</li>
-        <li className="cursor-pointer">Products</li>
+        <Link to={"/products"}>
+          <li className="cursor-pointer">Products</li>
+        </Link>
         <Link to={"/login"}>
           <li>Login</li>
         </Link>
