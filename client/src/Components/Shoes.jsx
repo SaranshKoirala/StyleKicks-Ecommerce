@@ -22,7 +22,9 @@ function Shoes() {
 
   return (
     <div className="p-20 flex flex-col justify-center items-center gap-20">
-      <h1 className="font-serif text-4xl font-bold">Find Your Perfect Fit</h1>
+      <h1 className="font-serif text-4xl font-bold  border-b-4 border-black ">
+        Find Your Perfect Fit
+      </h1>
 
       <div className="grid grid-cols-3 gap-10">
         {shoes.map((shoe) => {
