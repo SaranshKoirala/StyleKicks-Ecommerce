@@ -1,10 +1,11 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
 import Signup from "./Pages/Signup";
 import PageNotFound from "./Pages/PageNotFound";
 import ShoeDetail from "./Pages/ShoeDetail";
 import Navbar from "./Components/Navbar";
+import Products from "./Pages/Products";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/product/:id" element={<ShoeDetail />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>

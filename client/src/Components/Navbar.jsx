@@ -13,7 +13,9 @@ function Navbar() {
 
   return (
     <div className="flex gap-10 justify-between items-center px-10 py-2 text-white bg-black ">
-      <img src="/full-logo.png" className="m-0 p-0" width={150} />
+      <Link to={"/"}>
+        <img src="/full-logo.png" className="m-0 p-0" width={150} />
+      </Link>
 
       <ul className="flex gap-10 justify-center items-center w-[50%]  ">
         {!isOpen && (

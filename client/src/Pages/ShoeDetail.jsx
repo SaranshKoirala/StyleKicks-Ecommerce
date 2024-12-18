@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "../Components/Navbar";
 
 function ShoeDetail() {
   const [product, setProduct] = useState();
