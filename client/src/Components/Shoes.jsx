@@ -27,7 +27,7 @@ function Shoes() {
       </h1>
 
       <div className="grid grid-cols-3 gap-10">
-        {shoes.map((shoe) => {
+        {shoes.slice(0, 9).map((shoe) => {
           return <ShoeList shoe={shoe} key={shoe._id} />;
         })}
       </div>
