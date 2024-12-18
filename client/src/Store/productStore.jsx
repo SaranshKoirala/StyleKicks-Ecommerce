@@ -3,6 +3,7 @@ import { create } from "zustand";
 const API_URL = "http://localhost:5000/api/products/";
 
 const useProductStore = create((set) => ({
+  cart: [],
   products: [],
   error: null,
 
@@ -18,6 +19,26 @@ const useProductStore = create((set) => ({
     } catch (error) {
       set({ error: error.message });
     }
+  },
+
+  getProduct: async (id) => {
+    try {
+      set({ products: [], error: null });
+      const res = await fetch(`http://localhost:5000/api/products/${id}
+        `);
+      if (!res.ok) {
+        set({ error: "Couldn't fetch the data!!" });
+      }
+      const data = await res.json();
+      set({ products: data.product, error: null });
+    } catch (error) {
+      set({ error: error.message });
+    }
+  },
+  addToCart: (product) => {
+    set((state) => ({
+      cart: [...state.cart, product],
+    }));
   },
 }));
 

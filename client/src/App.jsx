@@ -4,7 +4,6 @@ import Home from "./Pages/Home";
 import Signup from "./Pages/Signup";
 import PageNotFound from "./Pages/PageNotFound";
 import ShoeDetail from "./Pages/ShoeDetail";
-import Navbar from "./Components/Navbar";
 import Products from "./Pages/Products";
 import Cart from "./Pages/Cart";
 
