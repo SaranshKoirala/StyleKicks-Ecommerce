@@ -11,7 +11,7 @@ function ShoeList({ shoe }) {
       key={shoe._id}
       className="w-60  list-none flex flex-col justify-center items-center font-mono gap-5 cursor-pointer "
     >
-      <img src={shoe.image} />
+      <img src={shoe.image} width="200px" height="400px" />
       <div className="text-center">
         <p className="text-xl">{shoe.name}</p>
         <p className="font-bold">Rs {shoe.price}</p>

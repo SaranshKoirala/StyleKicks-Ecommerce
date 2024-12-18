@@ -3,8 +3,9 @@ import { CgProfile } from "react-icons/cg";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-function Navbar() {
+function Navbar({ bgcolor, textcolor }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleSearchBtn() {
@@ -12,7 +13,9 @@ function Navbar() {
   }
 
   return (
-    <div className="flex gap-10 justify-between items-center px-10 py-2 text-black bg-transparent ">
+    <div
+      className={`flex gap-10 justify-between items-center px-10 py-2 text-${textcolor} bg-${bgcolor} font-bold`}
+    >
       <Link to={"/"}>
         <img src="/full-logo.png" className="m-0 p-0" width={150} />
       </Link>
@@ -74,5 +77,16 @@ function Navbar() {
     </div>
   );
 }
+
+Navbar.defaultProps = {
+  bgcolor: "white",
+  textcolor: "black", // Default color if none is provided
+};
+
+// Prop validation
+Navbar.propTypes = {
+  bgcolor: PropTypes.string.isRequired,
+  textcolor: PropTypes.string.isRequired, // Ensures 'color' is a string and required
+};
 
 export default Navbar;
