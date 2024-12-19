@@ -8,7 +8,7 @@ function Footer() {
         <p>|</p>
         <p>Refund and Return Policy</p>
       </div>
-      <p>&copy; 2024 StyleKicks, Inc.</p>
+      <p>&copy; 2024 StyleKicks Inc, All Rights Reserved</p>
     </div>
   );
 }

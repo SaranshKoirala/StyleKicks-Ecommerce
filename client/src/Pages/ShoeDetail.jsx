@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../Components/Navbar";
-// import useProductStore from "../Store/productStore";
+import useProductStore from "../Store/productStore";
+import { Notyf } from "notyf";
 
 function ShoeDetail() {
+  const notyf = new Notyf();
   const [product, setProduct] = useState();
-  // const { addToCart, cart } = useProductStore();
-  const [cart, setCart] = useState();
+  const { addToCart, cart } = useProductStore();
+  // const [isAdded, setIsAdded] = useState(false);
 
   const { id } = useParams();
 
@@ -38,11 +40,9 @@ function ShoeDetail() {
   );
 
   function handleAddToCart(product) {
-    setCart((prevProduct) => {
-      if (!prevProduct) {
-        return [product];
-      } else return [...prevProduct, product];
-    });
+    notyf.success("Product Added to Cart!");
+    addToCart(product);
+    // setIsAdded(true);
   }
 
   if (!product) {
@@ -59,7 +59,7 @@ function ShoeDetail() {
 
   return (
     <>
-      <Navbar />
+      <Navbar logo="full-logo2.png" />
       <div className="container mx-auto  md:px-10 flex justify-center items-center h-[600px]">
         <div className="grid grid-cols-1 md:grid-cols-2  items-center px-20">
           {/* Product Image */}
@@ -97,6 +97,7 @@ function ShoeDetail() {
               <button
                 className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-lg shadow-lg transition"
                 onClick={() => handleAddToCart(product)}
+                // disabled={isAdded}
               >
                 Add to Cart
               </button>

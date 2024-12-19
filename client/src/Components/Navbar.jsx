@@ -67,9 +67,11 @@ function Navbar({ logo, bgcolor, textcolor }) {
             </button>
           )}
         </li>
-        <li>
-          <MdOutlineShoppingCart className="text-2xl cursor-pointer" />
-        </li>
+        <Link to="/cart">
+          <li>
+            <MdOutlineShoppingCart className="text-2xl cursor-pointer" />
+          </li>
+        </Link>
         <li>
           <CgProfile className="text-2xl cursor-pointer" />
         </li>
