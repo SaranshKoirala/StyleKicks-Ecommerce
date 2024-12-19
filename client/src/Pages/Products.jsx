@@ -21,7 +21,7 @@ function Products() {
 
   return (
     <>
-      <Navbar />
+      <Navbar logo="full-logo2.png" />
 
       <div className="flex justify-center items-center p-10">
         <div className="grid grid-cols-3 gap-10">

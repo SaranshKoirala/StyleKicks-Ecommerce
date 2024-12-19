@@ -48,7 +48,7 @@ function Login() {
 
   return (
     <div className="bg-[url(/image-4.jpg)] bg-fixed bg-cover bg-center h-screen">
-      <Navbar bgcolor="white" textcolor="black" />
+      <Navbar logo="full-logo2.png" bgcolor="white" textcolor="black" />
 
       <div className=" flex items-center justify-center overflow-hidden h-[650px] ">
         <div className="w-96 flex flex-col justify-center bg-white p-10 gap-10 rounded-lg ">

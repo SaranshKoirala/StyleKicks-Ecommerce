@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-function Navbar({ bgcolor, textcolor }) {
+function Navbar({ logo, bgcolor, textcolor }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleSearchBtn() {
@@ -17,7 +17,7 @@ function Navbar({ bgcolor, textcolor }) {
       className={`flex gap-10 justify-between items-center px-10 py-2 text-${textcolor} bg-${bgcolor} font-bold`}
     >
       <Link to={"/"}>
-        <img src="/full-logo.png" className="m-0 p-0" width={150} />
+        <img src={`/${logo}`} className="m-0 p-0" width={150} />
       </Link>
 
       <ul className="flex gap-10 justify-center items-center w-[50%]  ">
