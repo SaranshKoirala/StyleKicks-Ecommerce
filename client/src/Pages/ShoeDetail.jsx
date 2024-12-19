@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../Components/Navbar";
-import useProductStore from "../Store/productStore";
+// import useProductStore from "../Store/productStore";
 
 function ShoeDetail() {
   const [product, setProduct] = useState();
@@ -37,20 +37,12 @@ function ShoeDetail() {
     [id]
   );
 
-  // useEffect(
-  //   function () {
-  //     console.log(cart);
-  //   },
-  //   [cart]
-  // );
-
   function handleAddToCart(product) {
     setCart((prevProduct) => {
       if (!prevProduct) {
         return [product];
       } else return [...prevProduct, product];
     });
-    console.log(cart);
   }
 
   if (!product) {
@@ -59,6 +51,10 @@ function ShoeDetail() {
         <p className="text-lg font-semibold text-gray-500">Loading...</p>
       </div>
     );
+  }
+
+  {
+    console.log(cart);
   }
 
   return (
