@@ -40,6 +40,12 @@ const useProductStore = create((set) => ({
       cart: [...state.cart, product],
     }));
   },
+
+  deleteFromCart: (id) => {
+    set((state) => ({
+      cart: state.cart.filter((product) => product._id !== id),
+    }));
+  },
 }));
 
 export default useProductStore;
