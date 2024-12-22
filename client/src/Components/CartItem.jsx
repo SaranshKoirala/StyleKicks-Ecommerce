@@ -29,12 +29,15 @@ function CartItem({ item }) {
     return <p>Loading...</p>;
   }
   return (
-    <>
-      {cart.length < 1 && (
-        <div className="text-black">No Products Added to Cart!!</div>
-      )}
-      <div className="flex justify-start items-center w-[50%] border m-20 gap-10 ">
-        <img src={item.image} alt={item.name} className=" h-[250px]" />
+    <div className="flex flex-col justify-start gap-5 w-[100%]">
+      <div>
+        <h1 className="font-bold text-5xl mb-3 font-serif">Your Bag</h1>
+        <p className="font-light">
+          Items in your bag are not reserved, check out now to make them yours.
+        </p>
+      </div>
+      <div className="flex justify-start items-center border border-black gap-10 px-3">
+        <img src={item.image} alt={item.name} width="200px" height="200px" />
         <div>
           <div className="flex justify-between items-center gap-20 font-bold text-xl w-full">
             <h1 className="font-sans ">{item.name}</h1>
@@ -56,7 +59,7 @@ function CartItem({ item }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
