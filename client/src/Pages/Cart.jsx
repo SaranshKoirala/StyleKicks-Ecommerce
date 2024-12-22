@@ -10,10 +10,12 @@ function Cart() {
     <div>
       <Navbar logo="full-logo2.png" />
       {cart.length < 1 && <NoItems />}
-      <div className="flex justify-center items-center gap-20 m-20">
-        <CartItems />
-        <OrderSummary />
-      </div>
+      {cart.length > 0 && (
+        <div className="flex justify-center items-center gap-20 m-20">
+          <CartItems />
+          <OrderSummary />
+        </div>
+      )}
     </div>
   );
 }

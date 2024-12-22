@@ -1,19 +1,28 @@
+import useProductStore from "../Store/productStore";
+
 function OrderSummary() {
+  const { cart } = useProductStore();
+  const subTotal = cart.reduce((acc, item) => {
+    return (acc += item.price);
+  }, 0);
+  const shippingFee = 100;
+  const total = subTotal + shippingFee;
+
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col justify-center">
       <div className="font-serif text-2xl font-semibold w-80">
         Order Summary
       </div>
       <div className="flex justify-between py-10 font-thin text-sm">
-        <div>
-          <p>1 Item</p>
+        <div className="flex flex-col gap-1">
+          <p>{cart.length} Item</p>
           <p>Shipping Fee</p>
           <p>Total</p>
         </div>
-        <div>
-          <p>Rs. 4199</p>
+        <div className="flex flex-col gap-1">
+          <p>Rs. {subTotal}</p>
           <p>Rs. 100</p>
-          <p>Rs. 4299</p>
+          <p>Rs. {total}</p>
         </div>
       </div>
 

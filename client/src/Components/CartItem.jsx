@@ -29,34 +29,26 @@ function CartItem({ item }) {
     return <p>Loading...</p>;
   }
   return (
-    <div className="flex flex-col justify-start gap-5 w-[100%]">
+    <div className="flex justify-start items-center border border-black rounded-md gap-10 px-3 mb-5 h-60 w-[700px]">
+      <img src={item.image} alt={item.name} width="200px" height="200px" />
       <div>
-        <h1 className="font-bold text-5xl mb-3 font-serif">Your Bag</h1>
-        <p className="font-light">
-          Items in your bag are not reserved, check out now to make them yours.
-        </p>
-      </div>
-      <div className="flex justify-start items-center border border-black gap-10 px-3">
-        <img src={item.image} alt={item.name} width="200px" height="200px" />
-        <div>
-          <div className="flex justify-between items-center gap-20 font-bold text-xl w-full">
-            <h1 className="font-sans ">{item.name}</h1>
-            <p className="font-mono">Rs {item.price}</p>
-          </div>
-          <p className="font-thin text-sm text-gray-400 mb-2">Men's Shoes</p>
-          <p className="font-thin text-sm">Color:None</p>
-          <p className="font-thin text-sm">Size:None</p>
-          <p className="font-thin text-sm mb-3">Style Number: {item._id}</p>
-          <div className="w-20 flex justify-center items-center gap-3 px-3 border border-gray-500 rounded-full">
-            {count === 1 && (
-              <button>
-                <MdDeleteOutline onClick={() => handleDeleteBtn(item._id)} />
-              </button>
-            )}
-            {count > 1 && <button onClick={handleSubBtn}>-</button>}
-            {count}
-            <button onClick={handleAddBtn}>+</button>
-          </div>
+        <div className="flex justify-between items-center gap-20 font-bold text-xl w-full">
+          <h1 className="font-sans ">{item.name}</h1>
+          <p className="font-mono">Rs {item.price}</p>
+        </div>
+        <p className="font-thin text-sm text-gray-400 mb-2">Men's Shoes</p>
+        <p className="font-thin text-sm">Color:None</p>
+        <p className="font-thin text-sm">Size:None</p>
+        <p className="font-thin text-sm mb-3">Style Number: {item._id}</p>
+        <div className="w-20 flex justify-center items-center gap-3 px-3 border border-gray-500 rounded-full">
+          {count === 1 && (
+            <button>
+              <MdDeleteOutline onClick={() => handleDeleteBtn(item._id)} />
+            </button>
+          )}
+          {count > 1 && <button onClick={handleSubBtn}>-</button>}
+          {count}
+          <button onClick={handleAddBtn}>+</button>
         </div>
       </div>
     </div>
