@@ -30,7 +30,7 @@ app.use((req, res) => {
 //connect to database
 connectDB();
 
-const port = 5000 || process.env.PORT;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Server started at port:${port}`);

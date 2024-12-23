@@ -6,10 +6,17 @@ const useProductStore = create((set) => ({
   cart: [],
   products: [],
   error: null,
+  subTotal: 0,
+
+  addPrice: (price) => {
+    set((state) => ({
+      subTotal: state.subTotal + price,
+    }));
+  },
 
   getProducts: async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/products/");
+      const res = await fetch("http://localhost:8000/api/products/");
       if (!res.ok) {
         set({ error: "Couldn't fetch the products" });
         return;
@@ -24,7 +31,7 @@ const useProductStore = create((set) => ({
   getProduct: async (id) => {
     try {
       set({ products: [], error: null });
-      const res = await fetch(`http://localhost:5000/api/products/${id}
+      const res = await fetch(`http://localhost:8000/api/products/${id}
         `);
       if (!res.ok) {
         set({ error: "Couldn't fetch the data!!" });

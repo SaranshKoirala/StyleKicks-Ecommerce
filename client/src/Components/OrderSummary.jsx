@@ -1,12 +1,9 @@
 import useProductStore from "../Store/productStore";
 
 function OrderSummary() {
-  const { cart } = useProductStore();
-  const subTotal = cart.reduce((acc, item) => {
-    return (acc += item.price);
-  }, 0);
-  const shippingFee = 100;
-  const total = subTotal + shippingFee;
+  const { cart, subTotal } = useProductStore();
+  const shippingPrice = 200;
+  const totalPrice = subTotal + shippingPrice;
 
   return (
     <div className="flex flex-col justify-center">
@@ -21,8 +18,8 @@ function OrderSummary() {
         </div>
         <div className="flex flex-col gap-1">
           <p>Rs. {subTotal}</p>
-          <p>Rs. 100</p>
-          <p>Rs. {total}</p>
+          <p>Rs. {shippingPrice}</p>
+          <p>Rs. {totalPrice}</p>
         </div>
       </div>
 
