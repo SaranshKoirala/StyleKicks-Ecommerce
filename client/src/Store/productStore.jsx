@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const API_URL = "http://localhost:5000/api/products/";
+// const API_URL = "http://localhost:5000/api/products/";
 
 const useProductStore = create((set) => ({
   cart: [],
@@ -9,7 +9,7 @@ const useProductStore = create((set) => ({
 
   getProducts: async () => {
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch("http://localhost:5000/api/products/");
       if (!res.ok) {
         set({ error: "Couldn't fetch the products" });
         return;

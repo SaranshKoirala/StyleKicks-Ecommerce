@@ -6,6 +6,7 @@ import useProductStore from "../Store/productStore";
 function CartItem({ item }) {
   const [count, setCount] = useState(1);
   const { deleteFromCart } = useProductStore();
+  const subTotal = item.price * count;
 
   function handleAddBtn() {
     setCount((prev) => prev + 1);
