@@ -53,7 +53,7 @@ function Register() {
           />
         </div>
         <button className=" py-2 text-xl text-white bg-blue-900 w-96 rounded-md">
-          Login
+          SignUp
         </button>
       </form>
     </div>
