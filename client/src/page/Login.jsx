@@ -12,7 +12,7 @@ function Login() {
 
   return (
     <div className="flex justify-center items-center min-h-screen ">
-      <div className="flex flex-col justify-center items-center gap-4 p-10 shadow-2xl rounded-xl">
+      <form className="flex flex-col justify-center items-center gap-4 p-10 shadow-2xl rounded-xl">
         <div className="text-center mb-4">
           <h1 className="text-5xl font-bold text-blue-900">Welcome, Log In</h1>
           <p className="text-gray-500 p-3">
@@ -55,7 +55,7 @@ function Login() {
             />
           )}
         </div>
-        <button className=" py-1 px-2 text-2xl text-white bg-blue-900 w-96 rounded-md">
+        <button className=" py-2 text-xl text-white bg-blue-900 w-96 rounded-md">
           Login
         </button>
         <p className="flex gap-1">
@@ -64,8 +64,7 @@ function Login() {
             SignUp
           </Link>
         </p>
-      </div>
-      {/* //{" "} */}
+      </form>
     </div>
   );
 }
