@@ -1,13 +1,15 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db.js");
+const userRoute = require("./routes/userRoute.js");
 
 const app = express();
 dotenv.config();
 
-app.use("/api/users", (req, res) => {
-  res.json("Api created of the user");
-});
+//parsing the JSON requests
+app.use(express.json());
+
+app.use("/api/users", userRoute);
 
 app.use("/*", (req, res) => {
   console.error("No routes found");
