@@ -2,13 +2,38 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [isOpen, setIsOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  // const [name, setName] = useState("");
 
   function handleShowBtn() {
     setIsOpen((isOpen) => !isOpen);
   }
+
+  async function handleSubmitBtn(e) {
+    e.preventDefault();
+    if (email == "" || password == "") {
+      alert("Enter the Email and Password!!");
+    } else {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/users/login",
+          { email, password }
+        );
+        console.log(response.data.message);
+        navigate("/dashboard");
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  }
+  // console.log(email);
 
   return (
     <div className="flex justify-center items-center min-h-screen ">
@@ -28,6 +53,8 @@ function Login() {
             type="email"
             id="email"
             className="border border-gray-300 placeholder:text-gray-400 px-2 py-1 w-96 rounded-md focus:outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -40,6 +67,8 @@ function Login() {
             type={isOpen ? "text" : "password"}
             id="password"
             className="border border-gray-300 placeholder:text-gray-400 px-2 py-1 w-96 rounded-md focus:outline-none"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
           {!isOpen && (
@@ -55,7 +84,11 @@ function Login() {
             />
           )}
         </div>
-        <button className=" py-2 text-xl text-white bg-blue-900 w-96 rounded-md">
+        <button
+          type="submit"
+          onClick={handleSubmitBtn}
+          className=" py-2 text-xl text-white bg-blue-900 w-96 rounded-md"
+        >
           Login
         </button>
         <p className="flex gap-1">

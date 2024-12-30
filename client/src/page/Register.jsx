@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 function Register() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
+
   return (
     <div className="flex justify-center items-center min-h-screen ">
       <form className="flex flex-col justify-center items-center gap-4 p-10 shadow-2xl rounded-xl">
@@ -17,6 +24,8 @@ function Register() {
             type="text"
             id="name"
             className="border border-gray-300 placeholder:text-gray-400 px-2 py-1 w-96 rounded-md focus:outline-none"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             required
           />
           <label htmlFor="email" className="font-bold text-blue-900">
@@ -27,6 +36,8 @@ function Register() {
             type="email"
             id="email"
             className="border border-gray-300 placeholder:text-gray-400 px-2 py-1 w-96 rounded-md focus:outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -39,6 +50,8 @@ function Register() {
             type="password"
             id="password"
             className="border border-gray-300 placeholder:text-gray-400 px-2 py-1 w-96 rounded-md focus:outline-none"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
           <label htmlFor="confirm-password" className="font-bold text-blue-900">
@@ -49,6 +62,8 @@ function Register() {
             type="password"
             id="confirm-password"
             className="border border-gray-300 placeholder:text-gray-400 px-2 py-1 w-96 rounded-md focus:outline-none"
+            value={cpassword}
+            onChange={(e) => setCpassword(e.target.value)}
             required
           />
         </div>
