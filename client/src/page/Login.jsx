@@ -16,6 +16,12 @@ function Login() {
     setIsOpen((isOpen) => !isOpen);
   }
 
+  function keyEvent(e) {
+    if (e.key === "Enter") {
+      handleSubmitBtn(e);
+    }
+  }
+
   async function handleSubmitBtn(e) {
     e.preventDefault();
     if (email == "" || password == "") {
@@ -26,14 +32,12 @@ function Login() {
           "http://localhost:3000/api/users/login",
           { email, password }
         );
-        console.log(response.data.message);
         navigate("/dashboard");
       } catch (error) {
-        console.log(error.message);
+        alert(error.response.data.message);
       }
     }
   }
-  // console.log(email);
 
   return (
     <div className="flex justify-center items-center min-h-screen ">
@@ -55,6 +59,7 @@ function Login() {
             className="border border-gray-300 placeholder:text-gray-400 px-2 py-1 w-96 rounded-md focus:outline-none"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={keyEvent}
             required
           />
         </div>
@@ -69,6 +74,7 @@ function Login() {
             className="border border-gray-300 placeholder:text-gray-400 px-2 py-1 w-96 rounded-md focus:outline-none"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onKeyDown={keyEvent}
             required
           />
           {!isOpen && (

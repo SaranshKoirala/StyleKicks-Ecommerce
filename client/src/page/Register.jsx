@@ -6,6 +6,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
 
+  function handleSubmitBtn() {}
+
   return (
     <div className="flex justify-center items-center min-h-screen ">
       <form className="flex flex-col justify-center items-center gap-4 p-10 shadow-2xl rounded-xl">
@@ -67,7 +69,10 @@ function Register() {
             required
           />
         </div>
-        <button className=" py-2 text-xl text-white bg-blue-900 w-96 rounded-md">
+        <button
+          onClick={handleSubmitBtn}
+          className=" py-2 text-xl text-white bg-blue-900 w-96 rounded-md"
+        >
           SignUp
         </button>
       </form>
