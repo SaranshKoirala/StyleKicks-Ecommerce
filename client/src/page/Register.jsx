@@ -1,12 +1,33 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
+  const navigate = useNavigate();
 
-  function handleSubmitBtn() {}
+  async function handleSubmitBtn(e) {
+    e.preventDefault();
+    if (name === "" || email === "" || password === "" || cpassword === "") {
+      alert("Enter the Email and Password!!");
+    } else {
+      try {
+        const response = await axios.post("http://localhost:3000/api/users", {
+          name,
+          email,
+          password,
+          cpassword,
+        });
+        alert(response.data.message);
+        navigate("/");
+      } catch (error) {
+        alert(error.response.data.message);
+      }
+    }
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen ">
