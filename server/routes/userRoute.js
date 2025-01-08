@@ -1,6 +1,7 @@
 const express = require("express");
 const route = express.Router();
 const User = require("../model/userModel");
+const validator = require("validator");
 
 route.get("/", async (req, res) => {
   try {
@@ -44,10 +45,19 @@ route.post("/", async (req, res) => {
       return res.status(400).json({ message: "Password do not match!" });
     }
 
-    const user = await User.create({ name, email, password, cpassword });
-    user.save();
+    // Validate email with validator.js
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email format." });
+    }
+
+    const user = await User.create({ name, email, password });
+    // await user.save();
     res.status(201).json({ message: "Sucessfully Register!", data: user });
   } catch (error) {
+    console.log(error);
+    if (error.code === 11000) {
+      res.status(400).json({ message: "Email already exits!!" });
+    }
     res.status(500).json({ message: "Something went Wrong!!" });
   }
 });
@@ -60,7 +70,7 @@ route.post("/login", async (req, res) => {
       return res.status(404).json({ message: "User not found!" });
     }
 
-    //checking if the passwor is valid
+    //checking if the password is valid
     if (password !== user.password) {
       return res.status(400).json({ message: "Password do not match!" });
     }

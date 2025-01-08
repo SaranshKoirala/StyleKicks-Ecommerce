@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema(
   {
@@ -14,6 +15,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      // minlength: [6, "Password must be at least 6 characters long!!"],
     },
   },
   {
@@ -21,6 +23,11 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", userSchema);
+//hashing the password before saving
+userSchema.pre("save", async function (next) {
+  this.password = await bcrypt.hash(this.password, 12);
+  next();
+});
 
+const User = mongoose.model("User", userSchema);
 module.exports = User;
