@@ -32,6 +32,7 @@ function Login() {
           "http://localhost:3000/api/users/login",
           { email, password }
         );
+        console.log(response);
         navigate("/dashboard");
       } catch (error) {
         alert(error.response.data.message);
