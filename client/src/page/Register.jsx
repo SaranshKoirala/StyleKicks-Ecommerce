@@ -22,6 +22,10 @@ function Register() {
           cpassword,
         });
         alert(response.data.message);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setCpassword("");
         navigate("/");
       } catch (error) {
         alert(error.response.data.message);
