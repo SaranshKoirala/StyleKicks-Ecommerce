@@ -72,16 +72,12 @@ route.post("/login", async (req, res) => {
     }
 
     //checking if the password is valid
-    // if (password !== user.password) {
-    //   return res.status(400).json({ message: "Password do not match!" });
-    // }
-
-    const isMatch = bcrypt.compare(password, user.password, (err, result) => {
+    bcrypt.compare(password, user.password, (err, result) => {
       if (err) {
-        res.status(400).json({ message: "Error comparing passwords." });
+        return res.status(400).json({ message: "Error comparing passwords." });
       }
-      if (!isMatch) {
-        res.status(200).json({ message: "Password don not match!" });
+      if (!result) {
+        return res.status(400).json({ message: "Invalid user details" });
       }
     });
 
