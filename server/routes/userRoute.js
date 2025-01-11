@@ -66,25 +66,45 @@ route.post("/", async (req, res) => {
 route.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
+    //Input Validation
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Email and password are required!" });
+    }
+
+    //Find user by email
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found!" });
     }
 
     //checking if the password is valid
-    bcrypt.compare(password, user.password, (err, result) => {
-      if (err) {
-        return res.status(400).json({ message: "Error comparing passwords." });
-      }
-      if (!result) {
-        return res.status(400).json({ message: "Invalid user details" });
-      }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid credentials!" });
+    }
+
+    //token generate
+    const token = await user.generateAuthToken();
+
+    //cookie generate
+    res.cookie("usercookie", token, {
+      httpOnly: true,
+      maxAge: 15 * 60 * 1000, //15min in milliseconds
     });
 
-    const token = await user.generateAuthToken();
-    res.status(200).json({ message: "User found!", token });
+    res.status(200).json({
+      message: "Login successful!",
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+        name: user.name,
+      },
+    });
   } catch (error) {
-    res.status(500).json({ message: "Couldn't find the requested user!" });
+    res.status(500).json({ message: "Internal server error." });
   }
 });
 
