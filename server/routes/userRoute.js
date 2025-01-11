@@ -92,7 +92,7 @@ route.post("/login", async (req, res) => {
     res.cookie("usercookie", token, {
       httpOnly: true,
       maxAge: 15 * 60 * 1000, //15min in milliseconds
-      sameSite: "lax",
+      // sameSite: "lax",
     });
 
     res.status(200).json({
