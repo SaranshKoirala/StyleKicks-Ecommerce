@@ -17,7 +17,7 @@ function ShoeDetail() {
       let isMounted = true;
       async function fetchProduct() {
         try {
-          const res = await fetch(`http://localhost:8000/api/products/${id}`);
+          const res = await fetch(`http://localhost:3000/api/products/${id}`);
           if (!res.ok) {
             console.log("Something went wrong!");
           }
