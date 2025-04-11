@@ -80,15 +80,16 @@ function Navbar({ logo, bgcolor, textcolor }) {
   );
 }
 
-Navbar.defaultProps = {
-  bgcolor: "white",
-  textcolor: "black", // Default color if none is provided
-};
+// Navbar.defaultProps = {
+//   bgcolor: "white",
+//   textcolor: "black", // Default color if none is provided
+// };
 
 // Prop validation
 Navbar.propTypes = {
   bgcolor: PropTypes.string.isRequired,
-  textcolor: PropTypes.string.isRequired, // Ensures 'color' is a string and required
+  textcolor: PropTypes.string.isRequired,
+  logo: PropTypes.string.isRequired, // Ensures 'color' is a string and required
 };
 
 export default Navbar;
