@@ -18,15 +18,14 @@ function Products() {
     return <p>{error}</p>;
   }
 
-  console.log(products);
-
   return (
     <div>
       <Navbar logo="full-logo2.png" />
-      {/* <div className="border-t border-t-gray-400 mt-4"></div> */}
       <div className="flex flex-col px-20 py-5 gap-9 mt-7">
         <div className="flex justify-between ">
-          <div className="text-3xl font-semibold">Men's Jordan Product</div>
+          <div className="text-3xl font-semibold">
+            Men&apos;s Jordan Product
+          </div>
 
           <div className="flex gap-1 items-center font-semibold cursor-pointer">
             Sort By <FaChevronDown className="text-sm" />
@@ -34,7 +33,6 @@ function Products() {
         </div>
         <div className="flex justify-between">
           <div className="w-[15%]">
-            {/* <div className="text-2xl font-semibold">Filter</div> */}
             <div className=" ">
               <div className=" font-semibold py-2">Gender</div>
               <div className="flex gap-2">

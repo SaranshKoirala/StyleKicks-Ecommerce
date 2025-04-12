@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import useProductStore from "../Store/productStore";
 
@@ -36,13 +36,12 @@ function CartItem({ item }) {
     setIsConfirmed(true);
   }
 
-  // function handleEditOrder() {
-  //   setIsConfirmed(false);
-  // }
-
   if (!item._id || !item.image || !item.name) {
     return <p>Loading...</p>;
   }
+
+  console.log(subTotal);
+
   return (
     <div className="flex justify-start items-center border border-black rounded-md gap-10 px-3 mb-5 h-60 w-[700px]">
       <img src={item.image} alt={item.name} width="200px" height="200px" />
@@ -51,7 +50,7 @@ function CartItem({ item }) {
           <h1 className="font-sans ">{item.name}</h1>
           <p className="font-mono">Rs {subTotal}</p>
         </div>
-        <p className="font-thin text-sm text-gray-400 mb-2">Men's Shoes</p>
+        <p className="font-thin text-sm text-gray-400 mb-2">Men&apos;s Shoes</p>
         <p className="font-thin text-sm">Color:None</p>
         {isConfirmed && <p className="font-thin text-sm">Quantity:{count}</p>}
         <p className="font-thin text-sm">Size:None</p>
