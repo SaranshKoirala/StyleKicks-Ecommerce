@@ -13,12 +13,6 @@ function Login() {
   const navigate = useNavigate();
   const notyf = new Notyf();
 
-  // useEffect(() => {
-  //   if (userData) {
-  //     console.log("userData:", userData); // Log userData after it has been updated
-  //   }
-  // }, [userData]);
-
   async function handleLoginBtn() {
     try {
       const res = await fetch("http://localhost:3000/api/users/login", {
