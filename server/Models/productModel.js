@@ -13,6 +13,18 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  gender: {
+    type: String,
+    enum: ["men", "women", "unisex"],
+  },
+  brand: {
+    type: String,
+    enum: ["nike", "adidas", "converse"],
+  },
+  category: {
+    type: String,
+    enum: ["sports", "sneakers", "formals"],
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);
