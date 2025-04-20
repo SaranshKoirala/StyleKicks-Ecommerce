@@ -53,10 +53,6 @@ function ShoeDetail() {
     );
   }
 
-  {
-    console.log(cart);
-  }
-
   return (
     <>
       <Navbar logo="full-logo2.png" />

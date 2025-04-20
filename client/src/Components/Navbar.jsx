@@ -4,9 +4,11 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import useProductStore from "../Store/productStore";
 
 function Navbar({ logo, bgcolor, textcolor }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { cart } = useProductStore();
 
   function handleSearchBtn() {
     setIsOpen((isOpen) => !isOpen);
@@ -68,9 +70,16 @@ function Navbar({ logo, bgcolor, textcolor }) {
           )}
         </li>
         <Link to="/cart">
-          <li>
+          <li className="relative">
             <MdOutlineShoppingCart className="text-2xl cursor-pointer" />
           </li>
+          {cart.length > 0 ? (
+            <div className="absolute  top-3 right-20 text-sm ">
+              {cart.length}
+            </div>
+          ) : (
+            <></>
+          )}
         </Link>
         <li>
           <CgProfile className="text-2xl cursor-pointer" />
@@ -79,11 +88,6 @@ function Navbar({ logo, bgcolor, textcolor }) {
     </div>
   );
 }
-
-// Navbar.defaultProps = {
-//   bgcolor: "white",
-//   textcolor: "black", // Default color if none is provided
-// };
 
 // Prop validation
 Navbar.propTypes = {
