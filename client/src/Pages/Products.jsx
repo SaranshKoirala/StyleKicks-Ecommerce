@@ -9,17 +9,22 @@ import Filters from "../Components/Filters";
 function Products() {
   const { products, error, getProducts } = useProductStore();
   const [open, setOpen] = useState(false);
+  const [sortOrder, setSortOrder] = useState("");
   // const [filters, setFilters] = useState([]);
 
-  function handleSortBtn() {
+  function handleIcons() {
     setOpen((open) => !open);
+  }
+
+  function handleSortBtn(order) {
+    setSortOrder(order);
   }
 
   useEffect(
     function () {
-      getProducts();
+      getProducts(sortOrder);
     },
-    [getProducts]
+    [getProducts, sortOrder]
   );
 
   if (error) {
@@ -35,7 +40,7 @@ function Products() {
             Men&apos;s Jordan Product
           </div>
           <div className="relative font-semibold cursor-pointer">
-            <button onClick={handleSortBtn} className="flex gap-1 items-center">
+            <button onClick={handleIcons} className="flex gap-1 items-center">
               Sort By{" "}
               {open ? (
                 <FaChevronUp className="text-sm" />
@@ -45,8 +50,12 @@ function Products() {
             </button>
             {open ? (
               <div className="absolute list-none font-semibold top-5 -right-0.5 bg-white text-black w-40 p-4 rounded-md">
-                <li className="mb-2">Price: High-Low</li>
-                <li>Price: Low-High</li>
+                <button className="mb-2" onClick={() => handleSortBtn("dec")}>
+                  Price: High-Low
+                </button>
+                <button onClick={() => handleSortBtn("asc")}>
+                  Price: Low-High
+                </button>
               </div>
             ) : (
               <></>

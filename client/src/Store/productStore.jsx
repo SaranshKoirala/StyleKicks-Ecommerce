@@ -14,9 +14,14 @@ const useProductStore = create((set) => ({
     }));
   },
 
-  getProducts: async () => {
+  getProducts: async (order) => {
     try {
-      const res = await fetch("http://localhost:3000/api/products/");
+      let res;
+      if (order) {
+        res = await fetch(`http://localhost:3000/api/products?sort=${order}`);
+      } else {
+        res = await fetch("http://localhost:3000/api/products/");
+      }
       if (!res.ok) {
         set({ error: "Couldn't fetch the products" });
         return;
