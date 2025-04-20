@@ -7,6 +7,19 @@ const useProductStore = create((set) => ({
   products: [],
   error: null,
   subTotal: 0,
+  isOpen: false,
+  isFocused: false,
+
+  setIsOpen: () => {
+    set((state) => ({
+      isOpen: !state.isOpen,
+    }));
+  },
+  setIsFocused: () => {
+    set((state) => ({
+      isFocused: !state.isFocused,
+    }));
+  },
 
   addPrice: (price) => {
     set((state) => ({

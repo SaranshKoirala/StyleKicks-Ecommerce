@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Navbar from "./Navbar";
 
 function Hero() {
   const [count, setCount] = useState(0);
@@ -14,14 +13,12 @@ function Hero() {
 
   return (
     <div>
-      <Navbar logo="full-logo2.png" bgcolor="white" textcolor="black" />
-      <div className="">
-        <img
-          src={`IMAGE-${count}.jpg`}
-          alt="shoe"
-          className="relative h-[900px] w-screen"
-        />
-      </div>
+      <img
+        src={`IMAGE-${count}.jpg`}
+        alt="shoe"
+        className="relative h-[900px] w-screen"
+      />
+
       <div className="absolute top-50 left-1/2 transform -translate-x-1/2 flex gap-2">
         <div className="w-3 h-3 rounded-full bg-yellow"></div>
         <div className="w-3 h-3 rounded-full bg-white"></div>
