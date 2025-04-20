@@ -23,7 +23,6 @@ function Navbar({ logo, bgcolor, textcolor }) {
     if (!searchTerm) setPlaceholder("Search...");
   }
 
-  // Stop background scroll on search open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
@@ -81,12 +80,9 @@ function Navbar({ logo, bgcolor, textcolor }) {
 
       {/* Search Mode Navbar */}
       <div className="fixed top-0 left-0 w-full bg-white z-50 px-10 py-4 flex justify-between shadow-lg h-80">
-        {/* Logo */}
         <Link to="/">
           <img src={`/${logo}`} className="m-0 p-0" width={150} />
         </Link>
-
-        {/* Centered Search Bar */}
         <div className="relative w-[50%]">
           <IoSearch className="absolute left-3 top-5 transform -translate-y-1/2 text-gray-500 cursor-pointer text-xl" />
           <input
@@ -99,8 +95,6 @@ function Navbar({ logo, bgcolor, textcolor }) {
             onBlur={handleBlur}
           />
         </div>
-
-        {/* Cancel Button */}
         <button
           className="bg-gray-200 h-10 text-gray-700 font-semibold px-6 rounded-lg shadow-md transition"
           onClick={handleSearchBtn}
