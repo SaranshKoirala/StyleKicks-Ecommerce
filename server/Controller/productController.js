@@ -2,7 +2,15 @@ import Product from "../Models/productModel.js";
 
 export const getProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const sortOrder = req.query.sort;
+    let products;
+    if (sortOrder === "asc") {
+      products = await Product.find().sort({ price: 1 });
+    } else if (sortOrder === "dec") {
+      products = await Product.find().sort({ price: -1 });
+    } else {
+      products = await Product.find();
+    }
     if (products.length <= 0) {
       res.status(400).json({ message: "No products are found!" });
     }
