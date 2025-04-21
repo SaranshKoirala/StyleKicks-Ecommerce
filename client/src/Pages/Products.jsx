@@ -7,10 +7,9 @@ import { FaChevronUp } from "react-icons/fa";
 import Filters from "../Components/Filters";
 
 function Products() {
-  const { products, error, getProducts } = useProductStore();
+  const { products, getProducts, searchTerm } = useProductStore();
   const [open, setOpen] = useState(false);
   const [sortOrder, setSortOrder] = useState("");
-  // const [filters, setFilters] = useState([]);
 
   function handleIcons() {
     setOpen((open) => !open);
@@ -22,23 +21,25 @@ function Products() {
 
   useEffect(
     function () {
-      getProducts(sortOrder);
+      getProducts(searchTerm, sortOrder);
     },
-    [getProducts, sortOrder]
+    [getProducts, sortOrder, searchTerm]
   );
-
-  if (error) {
-    return <p>{error}</p>;
-  }
 
   return (
     <div>
       <Navbar logo="full-logo2.png" />
       <div className="flex flex-col px-20 py-5 gap-9 mt-7">
         <div className="flex justify-between  bg-white">
-          <div className="text-3xl font-semibold">
-            Men&apos;s Jordan Product
-          </div>
+          {searchTerm.length > 3 ? (
+            <div className="text-3xl font-semibold">
+              search results for "{searchTerm}"
+            </div>
+          ) : (
+            <div className="text-3xl font-semibold">
+              Men&apos;s Jordan Product
+            </div>
+          )}
           <div className="relative font-semibold cursor-pointer">
             <button onClick={handleIcons} className="flex gap-1 items-center">
               Sort By{" "}

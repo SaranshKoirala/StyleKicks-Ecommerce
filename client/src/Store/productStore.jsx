@@ -5,19 +5,21 @@ import { create } from "zustand";
 const useProductStore = create((set) => ({
   cart: [],
   products: [],
+  // queryProducts: [],
   error: null,
   subTotal: 0,
+  searchTerm: "",
   isOpen: false,
-  isFocused: false,
 
-  setIsOpen: () => {
-    set((state) => ({
-      isOpen: !state.isOpen,
+  setIsOpen: (boolean) => {
+    set(() => ({
+      isOpen: boolean,
     }));
   },
-  setIsFocused: () => {
-    set((state) => ({
-      isFocused: !state.isFocused,
+
+  setSearchTerm: (term) => {
+    set(() => ({
+      searchTerm: term,
     }));
   },
 
@@ -27,21 +29,25 @@ const useProductStore = create((set) => ({
     }));
   },
 
-  getProducts: async (order) => {
+  getProducts: async (searchTerm = "", sortOrder = "asc") => {
     try {
-      let res;
-      if (order) {
-        res = await fetch(`http://localhost:3000/api/products?sort=${order}`);
-      } else {
-        res = await fetch("http://localhost:3000/api/products/");
-      }
+      let url = "http://localhost:3000/api/products";
+
+      const params = new URLSearchParams();
+      if (searchTerm) params.append("search", searchTerm);
+      if (sortOrder) params.append("sort", sortOrder);
+
+      const res = await fetch(`${url}?${params.toString()}`);
+
       if (!res.ok) {
-        set({ error: "Couldn't fetch the products" });
+        set({ error: "No Products Found" });
         return;
       }
+
       const data = await res.json();
       set({ products: data.products, error: "" });
     } catch (error) {
+      console.error("Error fetching products:", error); // Log the error
       set({ error: error.message });
     }
   },

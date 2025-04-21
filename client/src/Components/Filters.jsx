@@ -9,7 +9,6 @@ function Filters() {
       checked ? [...prev, value] : prev.filter((item) => item !== value)
     );
   }
-  console.log(selectFilters);
 
   return (
     <div className="w-[15%]">

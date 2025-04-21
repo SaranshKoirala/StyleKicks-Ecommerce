@@ -29,20 +29,3 @@ function Hero() {
 }
 
 export default Hero;
-//className="bg-[url(/IMAGE-0.jpg)]  bg-cover bg-center h-screen "
-// className={`bg-[url(/IMAGE-${count}.jpg)] bg-cover bg-center h-screen`}
-
-{
-  /* <div className="transition-transform ease-in-out h-[70%] w-screen">
-<img
-src={`IMAGE-${count}.jpg`}
-alt="shoe"
-className="relative h-full"
-/>
-</div>
-<div className="absolute">
-<div className="w-6 h-6 rounded-full border-white"></div>
-<div></div>
-<div></div>
-</div> */
-}

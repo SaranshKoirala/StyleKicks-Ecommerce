@@ -1,18 +1,17 @@
 import Product from "../Models/productModel.js";
 
 export const getProducts = async (req, res) => {
+  const { search = "", sort = "asc" } = req.query;
+
+  // Build the filter object for search term
+  const filter = search ? { name: { $regex: search, $options: "i" } } : {}; // Case-insensitive search on product name
+
+  // Build the sort object
+  const sortOrder = sort === "asc" ? 1 : sort === "dec" ? -1 : 1;
   try {
-    const sortOrder = req.query.sort;
-    let products;
-    if (sortOrder === "asc") {
-      products = await Product.find().sort({ price: 1 });
-    } else if (sortOrder === "dec") {
-      products = await Product.find().sort({ price: -1 });
-    } else {
-      products = await Product.find();
-    }
+    const products = await Product.find(filter).sort({ price: sortOrder });
     if (products.length <= 0) {
-      res.status(400).json({ message: "No products are found!" });
+      return res.status(404).json({ message: "No products are found!" });
     }
     res.status(200).json({ products });
   } catch (error) {

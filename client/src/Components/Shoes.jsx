@@ -1,25 +1,18 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import ShoeList from "./ShoeList";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa6";
+import useProductStore from "../Store/productStore";
 
 function Shoes() {
-  const [shoes, setShoes] = useState([]);
+  const { getProducts, products } = useProductStore();
+
+  const fetchProducts = useCallback(() => {
+    getProducts();
+  }, [getProducts]);
 
   useEffect(function () {
-    async function fetchShoes() {
-      try {
-        const res = await fetch("http://localhost:3000/api/products/");
-        if (!res.ok) {
-          console.log("Couldn't fetch the data.");
-        }
-        const data = await res.json();
-        setShoes(data.products);
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    fetchShoes();
+    fetchProducts();
   }, []);
 
   return (
@@ -36,7 +29,7 @@ function Shoes() {
       </div>
 
       <div className="grid grid-cols-3 gap-10 mb-[100px]">
-        {shoes.slice(0, 6).map((shoe) => {
+        {products.slice(0, 6).map((shoe) => {
           return <ShoeList shoe={shoe} key={shoe._id} />;
         })}
       </div>
