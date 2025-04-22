@@ -29,6 +29,7 @@ function Navbar() {
   function handlePopularSearch(term) {
     setSearchTerm(term);
     setIsOpen(false);
+    navigate("/products");
   }
 
   function handleSearchBtn() {

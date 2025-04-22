@@ -9,9 +9,10 @@ export const getProducts = async (req, res) => {
   // Build the sort object
   const sortOrder = sort === "asc" ? 1 : sort === "dec" ? -1 : 1;
   try {
-    const products = await Product.find(filter).sort({ price: sortOrder });
+    let products = await Product.find(filter).sort({ price: sortOrder });
     if (products.length <= 0) {
-      return res.status(404).json({ message: "No products are found!" });
+      products = await Product.find().sort({ price: sortOrder });
+      return res.status(200).json({ products });
     }
     res.status(200).json({ products });
   } catch (error) {
