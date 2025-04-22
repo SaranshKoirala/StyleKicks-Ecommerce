@@ -16,7 +16,7 @@ app.use(express.json()); //parser
 //all routes in userRoutes will be prefixed with /api
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
-app.use("api/huggingface", chatRoute);
+app.use("/api/huggingface", chatRoute);
 
 //for non existence route
 app.use((req, res) => {

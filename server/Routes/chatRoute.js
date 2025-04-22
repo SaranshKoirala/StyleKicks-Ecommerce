@@ -1,13 +1,17 @@
 import express from "express";
+import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 const route = express.Router();
 
 route.post("/chat", async (req, res) => {
   try {
     const { prompt } = req.body;
+    console.log("Received prompt:", prompt);
 
     const response = await axios.post(
-      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1",
+      "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta",
       {
         inputs: prompt,
       },
